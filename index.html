@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Include jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+        <!-- Include jQuery tablesorter plugin -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+    </head>
+    
+<body>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+
+        .table-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .reveal-content {
+            display: none;
+        }
+
+        table, th, td {
+            /* border: 1px solid rgb(69, 136, 69); */
+            border-collapse: collapse;
+        }
+
+        table {
+            border: 1px solid green;
+        }
+        
+        thead {
+            color: #41ab5c;
+            text-transform: uppercase;
+            display: flex;
+            width: 90vw;
+            position: sticky;
+            top: 0;
+            background-color: white;
+            border-bottom: 1px solid green;
+        }
+
+        #myTable th {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+        }
+
+        thead tr {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+
+        thead tr th {
+            position: relative;
+            flex: 1;
+        }
+
+        tbody {
+            display: flex;
+            width: 90vw;
+            flex-direction: column;
+        }
+        tbody tr {
+            display: flex;
+            flex-direction: row;
+        }
+
+        tbody tr td {
+            flex: 1;
+        }
+
+
+        /* Arrows */
+        table th:after,
+        table th:before {
+        border: 0.35em solid transparent;
+        content: '';
+        height: 0; 
+        float: right;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0; 
+        }
+
+        table th:before {
+        border-bottom-color: rgba(0, 0, 0, 0.25);
+        border-top: 0;
+        margin-top: -0.35em;
+        }
+
+        table th:after {
+        border-bottom: 0;
+        border-top-color: rgba(0, 0, 0, 0.25);
+        margin-top: 0.35em;
+        }
+
+        table th[aria-sort="ascending"]:before{
+            border-bottom-color: black;
+        }
+
+        table th[aria-sort="descending"]:after{
+            border-top-color: black;
+        }
+
+        /*  */
+
+        th, td {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        tbody tr:nth-child(2n + 1) {
+            background-color: rgb(242, 253, 242);
+        }
+
+        @media screen and (max-width: 600px) {
+            table {
+                border: 0;
+                width: 100%;
+            }
+            table thead tr {
+                text-align: center;
+            }
+
+            thead, tbody {
+                width: 100vw;
+            }
+
+            .reveal-content-container {
+                padding: 20px 0;
+                background-color: white;
+                width: 100%;
+                position: sticky;
+                top: 0;
+                border-bottom: 1px solid rgb(228, 228, 228);
+                z-index: 1;
+            }
+
+            .reveal-content {
+                display: block;
+                margin-left: 16px;
+            }
+        
+            table th {
+                display: none;
+            }
+            table thead tr {
+                display: block;
+            }
+            table tbody tr {
+                margin-bottom: 10px;
+                display: block;
+                border-bottom: 2px solid #ddd;
+            }
+            table td {
+                display: block;
+                text-align: right;
+                font-size: 13px;
+                border-bottom: 1px solid #e9e9e9;
+            }
+            table td:last-child {
+                border-bottom: 0;
+            }
+            table td:before {
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #41ab5c;
+            }
+        }
+    </style>
+
+    <div class="temp-container">
+        <div class="temp-content" style="width: 350px; text-align: center; margin: auto;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna fermentum iaculis. Leo duis ut diam quam nulla porttitor massa id. Scelerisque eu ultrices vitae auctor eu augue ut lectus arcu. Cursus turpis massa tincidunt dui ut ornare. Ac feugiat sed lectus vestibulum mattis. Eget nunc lobortis mattis aliquam. Viverra orci sagittis eu volutpat odio. Dictum non consectetur a erat nam at. Aliquam eleifend mi in nulla posuere. Dui id ornare arcu odio ut sem nulla pharetra. Enim sit amet venenatis urna cursus eget nunc scelerisque viverra. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean.
+Cursus sit amet dictum sit amet justo donec enim diam. Mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Suscipit tellus mauris a diam maecenas sed enim. Augue ut lectus arcu bibendum at varius vel. Bibendum est ultricies integer quis auctor. Sit amet luctus venenatis lectus magna fringilla urna. Eget nunc lobortis mattis aliquam faucibus purus in massa. Sodales ut etiam sit amet nisl purus in mollis. Pharetra sit amet aliquam id diam maecenas ultricies mi eget. Scelerisque eleifend donec pretium vulputate. Bibendum enim facilisis gravida neque convallis a cras semper. Quis vel eros donec ac odio tempor. Posuere lorem ipsum dolor sit amet consectetur. Pharetra pharetra massa massa ultricies mi quis. Egestas integer eget aliquet nibh praesent tristique magna. Quis imperdiet massa tincidunt nunc pulvinar sapien et ligula. Erat velit scelerisque in dictum. Etiam tempor orci eu lobortis elementum.
+        </div>
+
+
+        <div class="table-container">
+
+            <div id="error-message"></div>
+
+            <div class="reveal-content-container">
+                <button class="reveal-content" onclick="revealHeader()">Show options</button>
+            </div>
+
+            <table id="myTable">
+                <thead id="table-head"></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+
+        
+        <div class="temp-content" style="width: 350px; text-align: center; margin: auto;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna fermentum iaculis. Leo duis ut diam quam nulla porttitor massa id. Scelerisque eu ultrices vitae auctor eu augue ut lectus arcu. Cursus turpis massa tincidunt dui ut ornare. Ac feugiat sed lectus vestibulum mattis. Eget nunc lobortis mattis aliquam. Viverra orci sagittis eu volutpat odio. Dictum non consectetur a erat nam at. Aliquam eleifend mi in nulla posuere. Dui id ornare arcu odio ut sem nulla pharetra. Enim sit amet venenatis urna cursus eget nunc scelerisque viverra. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean.
+Cursus sit amet dictum sit amet justo donec enim diam. Mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Suscipit tellus mauris a diam maecenas sed enim. Augue ut lectus arcu bibendum at varius vel. Bibendum est ultricies integer quis auctor. Sit amet luctus venenatis lectus magna fringilla urna. Eget nunc lobortis mattis aliquam faucibus purus in massa. Sodales ut etiam sit amet nisl purus in mollis. Pharetra sit amet aliquam id diam maecenas ultricies mi eget. Scelerisque eleifend donec pretium vulputate. Bibendum enim facilisis gravida neque convallis a cras semper. Quis vel eros donec ac odio tempor. Posuere lorem ipsum dolor sit amet consectetur. Pharetra pharetra massa massa ultricies mi quis. Egestas integer eget aliquet nibh praesent tristique magna. Quis imperdiet massa tincidunt nunc pulvinar sapien et ligula. Erat velit scelerisque in dictum. Etiam tempor orci eu lobortis elementum.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna fermentum iaculis. Leo duis ut diam quam nulla porttitor massa id. Scelerisque eu ultrices vitae auctor eu augue ut lectus arcu. Cursus turpis massa tincidunt dui ut ornare. Ac feugiat sed lectus vestibulum mattis. Eget nunc lobortis mattis aliquam. Viverra orci sagittis eu volutpat odio. Dictum non consectetur a erat nam at. Aliquam eleifend mi in nulla posuere. Dui id ornare arcu odio ut sem nulla pharetra. Enim sit amet venenatis urna cursus eget nunc scelerisque viverra. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean.
+Cursus sit amet dictum sit amet justo donec enim diam. Mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Suscipit tellus mauris a diam maecenas sed enim. Augue ut lectus arcu bibendum at varius vel. Bibendum est ultricies integer quis auctor. Sit amet luctus venenatis lectus magna fringilla urna. Eget nunc lobortis mattis aliquam faucibus purus in massa. Sodales ut etiam sit amet nisl purus in mollis. Pharetra sit amet aliquam id diam maecenas ultricies mi eget. Scelerisque eleifend donec pretium vulputate. Bibendum enim facilisis gravida neque convallis a cras semper. Quis vel eros donec ac odio tempor. Posuere lorem ipsum dolor sit amet consectetur. Pharetra pharetra massa massa ultricies mi quis. Egestas integer eget aliquet nibh praesent tristique magna. Quis imperdiet massa tincidunt nunc pulvinar sapien et ligula. Erat velit scelerisque in dictum. Etiam tempor orci eu lobortis elementum.
+                
+</div>
+    </div>
+
+    <script>
+        let clicked = true
+
+        $.get('https://docs.google.com/spreadsheets/d/e/2PACX-1vRhLE_YzRmiQY8jVkTdM43qiAuY1DHT0LA1N1q47HqJHq4YzJYi8jkIXvGvAyS0btJitE_iJP3gh3oy/pub?gid=0&single=true&output=csv')
+            .done(successFunction)
+            .fail(function() {
+                $('#error-message').html("Could not load table. Please try later. Sorry for the inconvenience");
+            });
+
+        function successFunction(data) {
+            let allRows = data.split(/\r?\n|\r/);
+            let headerItems = allRows[0].split(',');
+
+            // Constructing thead
+            let tableHeader = '<tr>';
+            $.each(headerItems, function(i, item) {
+                tableHeader += '<th>' + item + '</th>';
+            });
+            tableHeader += '</tr>';
+            $('#myTable thead').append(tableHeader);
+
+            // Constructing tbody
+            for (let singleRow = 1; singleRow < allRows.length; singleRow++) {
+                let rowCells = allRows[singleRow].split(',');
+                let tableBody = '<tr>';
+                $.each(rowCells, function(i, cell) {
+                    if (i < rowCells.length-1) {
+                        tableBody += '<td data-label="'+headerItems[i]+'">' + cell + '</td>';
+                    } else {
+                        tableBody += `<td data-label=""><button id="company-links" onclick="location.href='` +cell+ `'">See details</button></td>`
+                    }
+                });
+                tableBody += '</tr>';
+                $('#myTable tbody').append(tableBody);
+            }
+
+            // Initialize tablesorter
+            $(function() {
+                $('table').tablesorter(); 
+            });
+        }
+
+        function revealHeader() {
+            if (clicked) {
+                $(".reveal-content").html("Hide options")
+                $('table th').css('display', 'block')
+                clicked = false
+            } else {
+                $(".reveal-content").html("Show options")
+                $('table th').css('display', 'none')
+                clicked = true
+            }
+        }
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 600) {
+                $('table th').css('display', 'block')
+            } else {
+                $('table th').css('display', 'none')
+            }
+        });
+
+    </script>
+    
+</body>
+</html>
