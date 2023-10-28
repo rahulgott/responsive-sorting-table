@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Include jQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
-        <!-- Include jQuery tablesorter plugin -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
-    </head>
-    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildingH 2023 report</title>
+
+    <!-- Include jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Include jQuery tablesorter plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+
+    <!-- Anonymous Pro Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap" rel="stylesheet">
+</head>
 <body>
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: "Anonymous Pro", Helvetica, sans-serif;
             margin: 0;
         }
 
@@ -22,37 +30,29 @@
             flex-direction: column;
         }
 
-        .reveal-content {
+        .toggle-nav-options {
             display: none;
         }
 
         table, th, td {
-            /* border: 1px solid rgb(69, 136, 69); */
             border-collapse: collapse;
-        }
-
-        table {
-            border: 1px solid green;
         }
         
         thead {
-            color: #41ab5c;
+            color: hsl(155, 68.2%, 42.0%);
             text-transform: uppercase;
+            font-family: "Poppins", sans-serif;
+            font-weight: bold;
             display: flex;
             width: 90vw;
             position: sticky;
             top: 0;
             background-color: white;
-            border-bottom: 1px solid green;
-        }
-
-        #myTable th {
-            position: sticky;
-            top: 0;
-            background-color: #fff;
+            border-bottom: 1px solid hsl(155, 68.2%, 42.0%);
         }
 
         thead tr {
+            position: sticky;
             width: 100%;
             display: flex;
             flex-direction: row;
@@ -67,6 +67,7 @@
             display: flex;
             width: 90vw;
             flex-direction: column;
+            font-size: 18px;
         }
         tbody tr {
             display: flex;
@@ -112,30 +113,66 @@
             border-top-color: black;
         }
 
-        /*  */
-
         th, td {
             padding: 1.5rem;
-            text-align: center;
+            text-align: left;
         }
+
         tbody tr:nth-child(2n + 1) {
-            background-color: rgb(242, 253, 242);
+            background-color: rgb(246, 252, 246);
         }
+
+        tbody a {
+            color: hsl(155, 68.2%, 42.0%);
+        }
+
+        button {
+            font-family: "Anonymous Pro", Helvetica, sans-serif;
+            background-color: white;
+            border: 2px solid hsl(155, 68.2%, 42.0%);
+            color: hsl(155, 68.2%, 42.0%);
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: rgb(236, 236, 236);
+        }
+
+        button.small-btn {
+            font-size: 16px;
+            padding: 0.5rem 1rem;
+        }
+
+        button.large-btn {
+            font-size: 18px;
+            padding: 1rem 2rem;
+        }
+
+        .show-all-rows {
+            margin: 1rem auto;
+        }
+
+
+        /* Media queries */
 
         @media screen and (max-width: 600px) {
             table {
                 border: 0;
                 width: 100%;
             }
-            table thead tr {
-                text-align: center;
-            }
 
             thead, tbody {
                 width: 100vw;
             }
 
-            .reveal-content-container {
+            thead {
+                top: 75px;
+            }
+
+            .nav-options-container {
                 padding: 20px 0;
                 background-color: white;
                 width: 100%;
@@ -145,7 +182,7 @@
                 z-index: 1;
             }
 
-            .reveal-content {
+            .toggle-nav-options {
                 display: block;
                 margin-left: 16px;
             }
@@ -153,116 +190,142 @@
             table th {
                 display: none;
             }
+
             table thead tr {
                 display: block;
+                text-align: center;
             }
+
             table tbody tr {
-                margin-bottom: 10px;
                 display: block;
                 border-bottom: 2px solid #ddd;
             }
-            table td {
+
+            table tbody td {
                 display: block;
                 text-align: right;
-                font-size: 13px;
-                border-bottom: 1px solid #e9e9e9;
+                font-size: 16px;
             }
+
             table td:last-child {
                 border-bottom: 0;
             }
+
             table td:before {
                 content: attr(data-label);
                 float: left;
                 font-weight: bold;
+                font-size: 14px;
                 text-transform: uppercase;
-                color: #41ab5c;
+                color:  hsl(155, 68.2%, 42.0%);
+                font-family: "Poppins", sans-serif;
             }
         }
     </style>
 
-    <div class="temp-container">
-        <div class="temp-content" style="width: 350px; text-align: center; margin: auto;">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna fermentum iaculis. Leo duis ut diam quam nulla porttitor massa id. Scelerisque eu ultrices vitae auctor eu augue ut lectus arcu. Cursus turpis massa tincidunt dui ut ornare. Ac feugiat sed lectus vestibulum mattis. Eget nunc lobortis mattis aliquam. Viverra orci sagittis eu volutpat odio. Dictum non consectetur a erat nam at. Aliquam eleifend mi in nulla posuere. Dui id ornare arcu odio ut sem nulla pharetra. Enim sit amet venenatis urna cursus eget nunc scelerisque viverra. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean.
-Cursus sit amet dictum sit amet justo donec enim diam. Mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Suscipit tellus mauris a diam maecenas sed enim. Augue ut lectus arcu bibendum at varius vel. Bibendum est ultricies integer quis auctor. Sit amet luctus venenatis lectus magna fringilla urna. Eget nunc lobortis mattis aliquam faucibus purus in massa. Sodales ut etiam sit amet nisl purus in mollis. Pharetra sit amet aliquam id diam maecenas ultricies mi eget. Scelerisque eleifend donec pretium vulputate. Bibendum enim facilisis gravida neque convallis a cras semper. Quis vel eros donec ac odio tempor. Posuere lorem ipsum dolor sit amet consectetur. Pharetra pharetra massa massa ultricies mi quis. Egestas integer eget aliquet nibh praesent tristique magna. Quis imperdiet massa tincidunt nunc pulvinar sapien et ligula. Erat velit scelerisque in dictum. Etiam tempor orci eu lobortis elementum.
+
+
+    <div class="temp-content" style="display:flex; max-width: 800px; margin: 2rem auto; padding: 0 2rem;">
+        The 2023 Building H Index ranks 37 companies in four industries – entertainment, food, housing and transportation – on how their products and services impact the health of their customers and consumers. The ranking reflects how companies score across five health-related behaviors: healthy eating, physical activity, sleep, social engagement, and time spent outdoors.
+
+<br>Our goal is to gauge the net health impact of common products and services used by many Americans in everyday life. We believe these health outcomes are too often overlooked, if not altogether ignored, and by shining a light on them we hope to inspire more creators and leaders in the corporate world to consider the consequences that their products and services have on the health of their customers and consumers. We ask them to Own the Outcome.
+
+<br>It’s important to note what the Building H Index does NOT evaluate. The Index does not focus on health products or services explicitly designed to influence health; it does not consider any social impact or charitable activities these companies might undertake to improve health; it does not consider how these companies might care for their employees, or how they engage in their local communities, or how their production processes affect their surrounding environments. While worthy efforts, we believe these considerations are second-order factors, where we focus on the direct - if underestimated - health consequences of using these companies and products, the products that form so much of the fabric of our everyday lives.
+    </div>
+
+    <div class="table-container">
+
+        <!-- For error fetching table content -->
+        <div id="error-message"></div>
+
+        <!-- For toggling nav options in mobile view -->
+        <div class="nav-options-container">
+            <button class="toggle-nav-options small-btn" onclick="toggleNavOptions()">Show filtering options</button>
         </div>
 
+        <!-- Main table -->
+        <table id="myTable">
+            <thead id="table-head"></thead>
+            <tbody></tbody>
+        </table>
 
-        <div class="table-container">
+        <button class="show-all-rows large-btn" onclick="showAllRows()">Show all entries</button>
+    </div>
 
-            <div id="error-message"></div>
+    <div class="temp-content" style="display:flex; max-width: 800px; margin: 2rem auto; padding: 0 2rem;">
+        The 2023 Building H Index ranks 37 companies in four industries – entertainment, food, housing and transportation – on how their products and services impact the health of their customers and consumers. The ranking reflects how companies score across five health-related behaviors: healthy eating, physical activity, sleep, social engagement, and time spent outdoors.
 
-            <div class="reveal-content-container">
-                <button class="reveal-content" onclick="revealHeader()">Show options</button>
-            </div>
+<br>Our goal is to gauge the net health impact of common products and services used by many Americans in everyday life. We believe these health outcomes are too often overlooked, if not altogether ignored, and by shining a light on them we hope to inspire more creators and leaders in the corporate world to consider the consequences that their products and services have on the health of their customers and consumers. We ask them to Own the Outcome.
 
-            <table id="myTable">
-                <thead id="table-head"></thead>
-                <tbody></tbody>
-            </table>
-        </div>
-
-
-        
-        <div class="temp-content" style="width: 350px; text-align: center; margin: auto;">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna fermentum iaculis. Leo duis ut diam quam nulla porttitor massa id. Scelerisque eu ultrices vitae auctor eu augue ut lectus arcu. Cursus turpis massa tincidunt dui ut ornare. Ac feugiat sed lectus vestibulum mattis. Eget nunc lobortis mattis aliquam. Viverra orci sagittis eu volutpat odio. Dictum non consectetur a erat nam at. Aliquam eleifend mi in nulla posuere. Dui id ornare arcu odio ut sem nulla pharetra. Enim sit amet venenatis urna cursus eget nunc scelerisque viverra. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean.
-Cursus sit amet dictum sit amet justo donec enim diam. Mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Suscipit tellus mauris a diam maecenas sed enim. Augue ut lectus arcu bibendum at varius vel. Bibendum est ultricies integer quis auctor. Sit amet luctus venenatis lectus magna fringilla urna. Eget nunc lobortis mattis aliquam faucibus purus in massa. Sodales ut etiam sit amet nisl purus in mollis. Pharetra sit amet aliquam id diam maecenas ultricies mi eget. Scelerisque eleifend donec pretium vulputate. Bibendum enim facilisis gravida neque convallis a cras semper. Quis vel eros donec ac odio tempor. Posuere lorem ipsum dolor sit amet consectetur. Pharetra pharetra massa massa ultricies mi quis. Egestas integer eget aliquet nibh praesent tristique magna. Quis imperdiet massa tincidunt nunc pulvinar sapien et ligula. Erat velit scelerisque in dictum. Etiam tempor orci eu lobortis elementum.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna fermentum iaculis. Leo duis ut diam quam nulla porttitor massa id. Scelerisque eu ultrices vitae auctor eu augue ut lectus arcu. Cursus turpis massa tincidunt dui ut ornare. Ac feugiat sed lectus vestibulum mattis. Eget nunc lobortis mattis aliquam. Viverra orci sagittis eu volutpat odio. Dictum non consectetur a erat nam at. Aliquam eleifend mi in nulla posuere. Dui id ornare arcu odio ut sem nulla pharetra. Enim sit amet venenatis urna cursus eget nunc scelerisque viverra. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean.
-Cursus sit amet dictum sit amet justo donec enim diam. Mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Suscipit tellus mauris a diam maecenas sed enim. Augue ut lectus arcu bibendum at varius vel. Bibendum est ultricies integer quis auctor. Sit amet luctus venenatis lectus magna fringilla urna. Eget nunc lobortis mattis aliquam faucibus purus in massa. Sodales ut etiam sit amet nisl purus in mollis. Pharetra sit amet aliquam id diam maecenas ultricies mi eget. Scelerisque eleifend donec pretium vulputate. Bibendum enim facilisis gravida neque convallis a cras semper. Quis vel eros donec ac odio tempor. Posuere lorem ipsum dolor sit amet consectetur. Pharetra pharetra massa massa ultricies mi quis. Egestas integer eget aliquet nibh praesent tristique magna. Quis imperdiet massa tincidunt nunc pulvinar sapien et ligula. Erat velit scelerisque in dictum. Etiam tempor orci eu lobortis elementum.
-                
-</div>
+<br>It’s important to note what the Building H Index does NOT evaluate. The Index does not focus on health products or services explicitly designed to influence health; it does not consider any social impact or charitable activities these companies might undertake to improve health; it does not consider how these companies might care for their employees, or how they engage in their local communities, or how their production processes affect their surrounding environments. While worthy efforts, we believe these considerations are second-order factors, where we focus on the direct - if underestimated - health consequences of using these companies and products, the products that form so much of the fabric of our everyday lives.
     </div>
 
     <script>
-        let clicked = true
+        
+        let navToggled = true
+        let rowVizToggle = true
 
         $.get('https://docs.google.com/spreadsheets/d/e/2PACX-1vRhLE_YzRmiQY8jVkTdM43qiAuY1DHT0LA1N1q47HqJHq4YzJYi8jkIXvGvAyS0btJitE_iJP3gh3oy/pub?gid=0&single=true&output=csv')
             .done(successFunction)
             .fail(function() {
-                $('#error-message').html("Could not load table. Please try later. Sorry for the inconvenience");
+                $('#error-message').html("Could not load the data. Please try again later. Sorry for the inconvenience");
             });
 
         function successFunction(data) {
-            let allRows = data.split(/\r?\n|\r/);
-            let headerItems = allRows[0].split(',');
+            let allRows = data.split(/\r?\n|\r/)
+            let headerItems = allRows[0].split(',').slice(0, 4)
+            let tableHeader = '<tr>';
 
             // Constructing thead
-            let tableHeader = '<tr>';
-            $.each(headerItems, function(i, item) {
-                tableHeader += '<th>' + item + '</th>';
+            $.each(headerItems, (i, item) => {
+                tableHeader += '<th>' + item + '</th>'
             });
             tableHeader += '</tr>';
-            $('#myTable thead').append(tableHeader);
+            $('#myTable thead').append(tableHeader)
 
             // Constructing tbody
             for (let singleRow = 1; singleRow < allRows.length; singleRow++) {
-                let rowCells = allRows[singleRow].split(',');
+                let rowCells = allRows[singleRow].split(',')
                 let tableBody = '<tr>';
-                $.each(rowCells, function(i, cell) {
-                    if (i < rowCells.length-1) {
-                        tableBody += '<td data-label="'+headerItems[i]+'">' + cell + '</td>';
+                    
+                $.each(rowCells.slice(0, 4), (i, cell) => {
+                    let link
+
+                    if (i === 1) {
+                        // Populate company page link
+                        link = (rowCells[rowCells.length-2]?.trim()) ? '<a href=' + rowCells[rowCells.length-2] + ' target="_blank">' + rowCells[i] + '</a>' : cell
+                        tableBody += '<td data-label="' + headerItems[i] + '">' + link + '</td>'
+                    } else if (i === 2) {
+                        // Populate industry type page link
+                        link = (rowCells[rowCells.length-1]?.trim()) ? '<a href=' + rowCells[rowCells.length-1] + ' target="_blank">' + rowCells[i] + '</a>' : cell
+                        tableBody += '<td data-label="' + headerItems[i] + '">' + link + '</td>'
                     } else {
-                        tableBody += `<td data-label=""><button id="company-links" onclick="location.href='` +cell+ `'">See details</button></td>`
+                        // Get remaining data from csv table, ignore last two columns
+                        tableBody += '<td data-label="' + headerItems[i] + '">' + cell + '</td>'
                     }
                 });
                 tableBody += '</tr>';
                 $('#myTable tbody').append(tableBody);
             }
 
+            // Hide rows after the 10th row
+            $('table tbody tr').slice(10).hide();
+
             // Initialize tablesorter
             $(function() {
-                $('table').tablesorter(); 
+                $('table').tablesorter();
             });
         }
-
-        function revealHeader() {
-            if (clicked) {
-                $(".reveal-content").html("Hide options")
+        
+        function toggleNavOptions() {
+            if (navToggled) {
+                $(".toggle-nav-options").html("Hide options")
                 $('table th').css('display', 'block')
-                clicked = false
+                navToggled = false
             } else {
-                $(".reveal-content").html("Show options")
+                $(".toggle-nav-options").html("Show options")
                 $('table th').css('display', 'none')
-                clicked = true
+                navToggled = true
             }
         }
 
@@ -272,9 +335,20 @@ Cursus sit amet dictum sit amet justo donec enim diam. Mi in nulla posuere solli
             } else {
                 $('table th').css('display', 'none')
             }
-        });
+        })
 
+        
+        function showAllRows() {
+            if (rowVizToggle) {
+                $('table tbody tr').show();
+                $('.show-all-rows').html("Show top 10 entries")
+                rowVizToggle = false
+            } else {
+                $('table tbody tr').slice(10).hide()
+                $('.show-all-rows').html("Show all entries")
+                rowVizToggle = true
+            }
+        }
     </script>
-    
 </body>
 </html>
