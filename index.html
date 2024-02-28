@@ -28,6 +28,12 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        #myTable {
+            width: 100%;
         }
 
         .toggle-nav-options {
@@ -41,13 +47,13 @@
         thead {
             color: hsl(155, 68.2%, 42.0%);
             text-transform: uppercase;
+            font-size: 15px;
             font-family: "Poppins", sans-serif;
-            font-weight: bold;
+            font-weight: 600;
             display: flex;
-            width: 90vw;
+            /* width: 90vw; */
             position: sticky;
             top: 0;
-            background-color: white;
             border-bottom: 1px solid hsl(155, 68.2%, 42.0%);
         }
 
@@ -60,12 +66,12 @@
 
         thead tr th {
             position: relative;
-            flex: 1;
+            /* flex: 1; */
         }
 
         tbody {
             display: flex;
-            width: 90vw;
+            /* width: 90vw; */
             flex-direction: column;
             font-size: 18px;
         }
@@ -75,8 +81,12 @@
         }
 
         tbody tr td {
-            flex: 1;
+            width: 100%;
         }
+
+        /* tbody tr td {
+            flex: 1;
+        } */
 
 
         /* Arrows */
@@ -90,7 +100,8 @@
         right: 10px;
         top: 50%;
         transform: translateY(-50%);
-        width: 0; 
+        width: 0;
+        margin-left: 10px;
         }
 
         table th:before {
@@ -113,17 +124,42 @@
             border-top-color: black;
         }
 
-        th, td {
+        th {
             padding: 1.5rem;
             text-align: left;
         }
 
-        tbody tr:nth-child(2n + 1) {
-            background-color: rgb(246, 252, 246);
+        td {
+            padding: 1.2rem 1.5rem;
+            text-align: left;
         }
+
+        /* tbody tr:nth-child(2n + 1) {
+            background-color: rgb(246, 252, 246);
+        } */
 
         tbody a {
             color: hsl(155, 68.2%, 42.0%);
+        }
+
+        .tcolumn1 {
+            width: 18%;
+            text-align: center;
+        }
+        .tcolumn2 {
+            width: 32%;
+            font-weight: bold;
+        }
+        .tcolumn3 {
+            width: 22%;
+        }
+        .tcolumn4 {
+            width: 18%;
+            text-align: center;
+        }
+        .tcolumn5 {
+            width: 10%;
+            text-align: center;
         }
 
         button {
@@ -220,18 +256,29 @@
                 color:  hsl(155, 68.2%, 42.0%);
                 font-family: "Poppins", sans-serif;
             }
+            .tcolumn1 {
+                width: 100%;
+                text-align: center;
+            }
+            .tcolumn2 {
+                width: 100%;
+                text-align: center;
+            }
+            .tcolumn3 {
+                width: 100%;
+                text-align: center;
+            }
+            .tcolumn4 {
+                width: 100%;
+                text-align: center;
+            }
+            .tcolumn5 {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 
-
-
-    <div class="temp-content" style="display:flex; max-width: 800px; margin: 2rem auto; padding: 0 2rem;">
-        The 2023 Building H Index ranks 37 companies in four industries – entertainment, food, housing and transportation – on how their products and services impact the health of their customers and consumers. The ranking reflects how companies score across five health-related behaviors: healthy eating, physical activity, sleep, social engagement, and time spent outdoors.
-
-<br>Our goal is to gauge the net health impact of common products and services used by many Americans in everyday life. We believe these health outcomes are too often overlooked, if not altogether ignored, and by shining a light on them we hope to inspire more creators and leaders in the corporate world to consider the consequences that their products and services have on the health of their customers and consumers. We ask them to Own the Outcome.
-
-<br>It’s important to note what the Building H Index does NOT evaluate. The Index does not focus on health products or services explicitly designed to influence health; it does not consider any social impact or charitable activities these companies might undertake to improve health; it does not consider how these companies might care for their employees, or how they engage in their local communities, or how their production processes affect their surrounding environments. While worthy efforts, we believe these considerations are second-order factors, where we focus on the direct - if underestimated - health consequences of using these companies and products, the products that form so much of the fabric of our everyday lives.
-    </div>
 
     <div class="table-container">
 
@@ -252,20 +299,12 @@
         <button class="show-all-rows large-btn" onclick="showAllRows()">Show all entries</button>
     </div>
 
-    <div class="temp-content" style="display:flex; max-width: 800px; margin: 2rem auto; padding: 0 2rem;">
-        The 2023 Building H Index ranks 37 companies in four industries – entertainment, food, housing and transportation – on how their products and services impact the health of their customers and consumers. The ranking reflects how companies score across five health-related behaviors: healthy eating, physical activity, sleep, social engagement, and time spent outdoors.
-
-<br>Our goal is to gauge the net health impact of common products and services used by many Americans in everyday life. We believe these health outcomes are too often overlooked, if not altogether ignored, and by shining a light on them we hope to inspire more creators and leaders in the corporate world to consider the consequences that their products and services have on the health of their customers and consumers. We ask them to Own the Outcome.
-
-<br>It’s important to note what the Building H Index does NOT evaluate. The Index does not focus on health products or services explicitly designed to influence health; it does not consider any social impact or charitable activities these companies might undertake to improve health; it does not consider how these companies might care for their employees, or how they engage in their local communities, or how their production processes affect their surrounding environments. While worthy efforts, we believe these considerations are second-order factors, where we focus on the direct - if underestimated - health consequences of using these companies and products, the products that form so much of the fabric of our everyday lives.
-    </div>
-
     <script>
         
         let navToggled = true
         let rowVizToggle = true
 
-        $.get('https://docs.google.com/spreadsheets/d/e/2PACX-1vRhLE_YzRmiQY8jVkTdM43qiAuY1DHT0LA1N1q47HqJHq4YzJYi8jkIXvGvAyS0btJitE_iJP3gh3oy/pub?gid=0&single=true&output=csv')
+        $.get('https://docs.google.com/spreadsheets/d/e/2PACX-1vR2GiwkJGDxjbeLBeZVvi4LiRtvF2BukqU0cyoRAfEw88MH0wjfMA1uvM0U6_EFRrxgsF1bUpTNNIHJ/pub?gid=0&single=true&output=csv')
             .done(successFunction)
             .fail(function() {
                 $('#error-message').html("Could not load the data. Please try again later. Sorry for the inconvenience");
@@ -273,12 +312,12 @@
 
         function successFunction(data) {
             let allRows = data.split(/\r?\n|\r/)
-            let headerItems = allRows[0].split(',').slice(0, 4)
+            let headerItems = allRows[0].split(',').slice(0, 5)
             let tableHeader = '<tr>';
 
             // Constructing thead
             $.each(headerItems, (i, item) => {
-                tableHeader += '<th>' + item + '</th>'
+                tableHeader += '<th class="tcolumn' + (i+1) + '">' + item + '</th>'
             });
             tableHeader += '</tr>';
             $('#myTable thead').append(tableHeader)
@@ -288,20 +327,21 @@
                 let rowCells = allRows[singleRow].split(',')
                 let tableBody = '<tr>';
                     
-                $.each(rowCells.slice(0, 4), (i, cell) => {
+                $.each(rowCells.slice(0, 5), (i, cell) => {
                     let link
 
                     if (i === 1) {
                         // Populate company page link
+                        console.log(rowCells)
                         link = (rowCells[rowCells.length-2]?.trim()) ? '<a href=' + rowCells[rowCells.length-2] + ' target="_blank">' + rowCells[i] + '</a>' : cell
-                        tableBody += '<td data-label="' + headerItems[i] + '">' + link + '</td>'
+                        tableBody += '<td class="tcolumn' + (i+1) + '" data-label="' + headerItems[i] + '">' + link + '</td>'
                     } else if (i === 2) {
                         // Populate industry type page link
                         link = (rowCells[rowCells.length-1]?.trim()) ? '<a href=' + rowCells[rowCells.length-1] + ' target="_blank">' + rowCells[i] + '</a>' : cell
-                        tableBody += '<td data-label="' + headerItems[i] + '">' + link + '</td>'
+                        tableBody += '<td class="tcolumn' + (i+1) + '" data-label="' + headerItems[i] + '">' + link + '</td>'
                     } else {
                         // Get remaining data from csv table, ignore last two columns
-                        tableBody += '<td data-label="' + headerItems[i] + '">' + cell + '</td>'
+                        tableBody += '<td class="tcolumn' + (i+1) + '" data-label="' + headerItems[i] + '">' + cell + '</td>'
                     }
                 });
                 tableBody += '</tr>';
