@@ -28,8 +28,9 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            max-width: 1000px;
-            margin: 0 auto;
+            min-width: 800px;
+            width: 1000px;
+            max-width: 1200px;
         }
 
         #myTable {
@@ -140,6 +141,8 @@
 
         tbody a {
             color: hsl(155, 68.2%, 42.0%);
+            text-decoration: underline;
+            -webkit-text-decoration: underline;
         }
 
         .tcolumn1 {
@@ -194,7 +197,7 @@
 
         /* Media queries */
 
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 700px) {
             table {
                 border: 0;
                 width: 100%;
