@@ -47,12 +47,12 @@
         
         thead {
             color: hsl(155, 68.2%, 42.0%);
+            background-color: #f3f3f2;
             text-transform: uppercase;
             font-size: 15px;
             font-family: "Poppins", sans-serif;
             font-weight: 600;
             display: flex;
-            /* width: 90vw; */
             position: sticky;
             top: 0;
             border-bottom: 1px solid hsl(155, 68.2%, 42.0%);
@@ -317,12 +317,12 @@
             .done(successFunction)
             .fail(function() {
                 $('#error-message').html("Could not load the data. Please try again later. Sorry for the inconvenience");
-            });
+            })
 
         function successFunction(data) {
             let allRows = data.split(/\r?\n|\r/)
             let headerItems = allRows[0].split(',').slice(0, 5)
-            let tableHeader = '<tr>';
+            let tableHeader = '<tr>'
 
             // Constructing thead
             $.each(headerItems, (i, item) => {
@@ -334,7 +334,7 @@
             // Constructing tbody
             for (let singleRow = 1; singleRow < allRows.length; singleRow++) {
                 let rowCells = allRows[singleRow].split(',')
-                let tableBody = '<tr>';
+                let tableBody = '<tr>'
                     
                 $.each(rowCells.slice(0, 5), (i, cell) => {
                     let link
@@ -352,17 +352,17 @@
                         // Get remaining data from csv table, ignore last two columns
                         tableBody += '<td class="tcolumn' + (i+1) + '" data-label="' + headerItems[i] + '">' + cell + '</td>'
                     }
-                });
-                tableBody += '</tr>';
-                $('#myTable tbody').append(tableBody);
+                })
+                tableBody += '</tr>'
+                $('#myTable tbody').append(tableBody)
             }
 
             // Hide rows after the 10th row
-            $('table tbody tr').slice(10).hide();
+            $('table tbody tr').slice(10).hide()
 
             // Initialize tablesorter
             $(function() {
-                $('table').tablesorter();
+                $('table').tablesorter()
             });
         }
         
