@@ -128,11 +128,13 @@
             border-top-color: black;
         }
 
+        /* Table header size */
         th {
             padding: 1.5rem;
             text-align: left;
         }
 
+        /* Table data cells size */
         td {
             padding: 1.2rem 1.5rem;
             text-align: left;
@@ -241,6 +243,11 @@
                 text-align: center;
             }
 
+            thead .tcolumn1, .tcolumn2, .tcolumn3, .tcolumn4, .tcolumn5 {
+                width: 80%;
+                text-align: left;
+            }
+
             table tbody tr {
                 display: block;
                 border-bottom: 2px solid #ddd;
@@ -265,25 +272,65 @@
                 color:  hsl(155, 68.2%, 42.0%);
                 font-family: "Poppins", sans-serif;
             }
-            .tcolumn1 {
+            tbody .tcolumn1 {
                 width: 100%;
-                text-align: center;
+                text-align: left;
             }
-            .tcolumn2 {
-                width: 100%;
-                text-align: center;
+            tbody .tcolumn1::before {
+                width: 40%;
+                text-align: left;
             }
-            .tcolumn3 {
-                width: 100%;
-                text-align: center;
+            tbody .tcolumn1 span {
+                width: 60%;
+                text-align: left;
             }
-            .tcolumn4 {
+            tbody .tcolumn2 {
                 width: 100%;
-                text-align: center;
+                text-align: left;
             }
-            .tcolumn5 {
+            tbody .tcolumn2::before {
+                width: 40%;
+                text-align: left;
+            }
+            tbody .tcolumn2 span {
+                width: 60%;
+                text-align: left;
+            }
+            tbody .tcolumn3 {
                 width: 100%;
-                text-align: center;
+                text-align: left;
+            }
+            tbody .tcolumn3::before {
+                width: 40%;
+                text-align: left;
+            }
+            tbody .tcolumn3 span {
+                width: 60%;
+                text-align: left;
+            }
+            tbody .tcolumn4 {
+                width: 100%;
+                text-align: left;
+            }
+            tbody .tcolumn4::before {
+                width: 40%;
+                text-align: left;
+            }
+            tbody .tcolumn4 span {
+                width: 60%;
+                text-align: left;
+            }
+            tbody .tcolumn5 {
+                width: 100%;
+                text-align: left;
+            }
+            tbody .tcolumn5::before {
+                width: 40%;
+                text-align: left;
+            }
+            tbody .tcolumn5 span {
+                width: 60%;
+                text-align: left;
             }
         }
     </style>
@@ -352,14 +399,14 @@
                     if (i === 1) {
                         // Populate company page link
                         link = (rowCells[rowCells.length-2]?.trim()) ? '<a href=' + rowCells[rowCells.length-2] + ' target="_blank">' + rowCells[i] + '</a>' : cell
-                        tableBody += '<td class="tcolumn' + (i+1) + '" data-label="' + headerItems[i] + '">' + link + '</td>'
+                        tableBody += '<td class="tcolumn' + (i+1) + '" data-label="' + headerItems[i] + '"><span>' + link + '</span></td>'
                     } else if (i === 2) {
                         // Populate industry type page link
                         link = (rowCells[rowCells.length-1]?.trim()) ? '<a href=' + rowCells[rowCells.length-1] + ' target="_blank">' + rowCells[i] + '</a>' : cell
-                        tableBody += '<td class="tcolumn' + (i+1) + '" data-label="' + headerItems[i] + '">' + link + '</td>'
+                        tableBody += '<td class="tcolumn' + (i+1) + '" data-label="' + headerItems[i] + '"><span>' + link + '</span></td>'
                     } else {
                         // Get remaining data from csv table, ignore last two columns
-                        tableBody += '<td class="tcolumn' + (i+1) + '" data-label="' + headerItems[i] + '">' + cell + '</td>'
+                        tableBody += '<td class="tcolumn' + (i+1) + '" data-label="' + headerItems[i] + '"><span>' + cell + '</span></td>'
                     }
                 })
                 tableBody += '</tr>'
